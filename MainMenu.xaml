@@ -1,0 +1,21 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="AutomobileRegisty__kursovaya_.MainMenu"
+             Title="NewPage1">
+    <ScrollView
+        BackgroundColor="LightGray">
+        <VerticalStackLayout
+            VerticalOptions="Center" 
+            HorizontalOptions="Center" >
+
+            <Label 
+                Text="Вы вошли в систему!"
+                FontSize="24"
+                VerticalOptions="Center" 
+                HorizontalOptions="Center"
+                TextColor="DarkCyan" />
+
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentPage>

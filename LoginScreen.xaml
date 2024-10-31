@@ -1,0 +1,75 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="AutomobileRegisty__kursovaya_.LoginScreen">
+
+    <ScrollView
+        BackgroundColor="LightGray">
+        <VerticalStackLayout
+            Spacing="25"
+            Padding="30,0"
+            VerticalOptions="Center">
+
+            <!--<Image
+                Source="dotnet_bot.png"
+                SemanticProperties.Description="Cute dot net bot waving hi to you!"
+                HeightRequest="200"
+                HorizontalOptions="Center" />-->
+
+            <Label
+                Text="Учет автомобилей онлайн"
+                SemanticProperties.HeadingLevel="Level1"
+                FontSize="32"
+                TextDecorations="Underline"
+                HorizontalOptions="Center"
+                TextColor="DarkCyan"/>
+
+            <Label
+                Text="Вход"
+                SemanticProperties.HeadingLevel="Level2"
+                SemanticProperties.Description="Welcome to dot net Multi platform App U I"
+                FontSize="24"
+                HorizontalOptions="Center"
+                TextColor="DarkCyan"/>
+
+            <VerticalStackLayout
+                MaximumWidthRequest="300"
+                Spacing="4"
+                >
+                <Label
+                    Text="Логин:"
+                    HorizontalOptions="Start"
+                    TextColor="DarkCyan"/>
+                <Entry
+                    SemanticProperties.HeadingLevel="Level2"
+                    MinimumWidthRequest="300"
+                    FontSize="14"
+                    HorizontalOptions="Center"
+                    BackgroundColor="WhiteSmoke"
+                    TextColor="Cyan"/>
+
+                <Label
+                    Margin="0, 8, 0, 0"
+                    Text="Пароль:"
+                    HorizontalOptions="Start"
+                    TextColor="DarkCyan"/>
+                <Entry
+                    SemanticProperties.HeadingLevel="Level2"
+                    MinimumWidthRequest="300"
+                    FontSize="14"
+                    HorizontalOptions="Center"
+                    BackgroundColor="WhiteSmoke"
+                    TextColor="Cyan" />
+
+                <Button
+                    x:Name="SubmitBtn"
+                    Margin="0, 16, 0, 0"
+                    Text="ВОЙТИ"
+                    SemanticProperties.Hint="Submit login and password"
+                    Clicked="OnSubmitBtnClicked"
+                    HorizontalOptions="Center"/>
+            </VerticalStackLayout>
+        </VerticalStackLayout>
+    </ScrollView>
+
+</ContentPage>
