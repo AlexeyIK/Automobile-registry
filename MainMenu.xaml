@@ -2,7 +2,7 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="AutomobileRegisty__kursovaya_.MainMenu"
-             Title="NewPage1">
+             Title="Главное меню">
     <ScrollView
         BackgroundColor="LightGray">
         <VerticalStackLayout
