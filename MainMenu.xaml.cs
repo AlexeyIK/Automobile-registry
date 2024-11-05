@@ -1,31 +1,34 @@
-﻿namespace AutomobileRegisty__kursovaya_;
+﻿using PostgreTest.Models;
+using Microsoft.EntityFrameworkCore;
+
+namespace AutomobileRegisty__kursovaya_;
 
 public partial class MainMenu : ContentPage
 {
     public MainMenu()
     {
         InitializeComponent();
+        LoadVehiclesAsync();
     }
 
-    protected override void OnAppearing()
+    private void LoadVehiclesAsync()
     {
-        base.OnAppearing();
-        ShowAutos();
-    }
-
-    private void ShowAutos()
-    {
-        using (ApplicationContext db = new ApplicationContext())
+        using (var db = new ApplicationContext())
         {
-            var carsList = db.VehiclesList.ToList();
-            if (carsList.Count > 0)
-                EnterLabel.IsVisible = false;
+            var carsList = db.VehiclesList
+                .Include(v => v.ManufacturerNavigation)
+                .ToList();
 
-            foreach (var car in carsList)
-            {
-                var elem = new Label() { Text = $"{car.Model} [{car.Vin}]", TextColor = Colors.DarkCyan, FontSize=12, MaximumWidthRequest=300 };
-                elem.Parent = InfoStack;
-            }
+            if (carsList.Count > 0)
+                VehiclesCollectionView.ItemsSource = carsList;
+        }
+    }
+
+    private void VehiclesCollectionView_SelectionChanged(object sender, SelectionChangedEventArgs e)
+    {
+        if (e.CurrentSelection.FirstOrDefault() is Vehicle selectedVehicle)
+        {
+            DisplayAlert("Выбран", $"{selectedVehicle.Manufacturer} {selectedVehicle.Model}", "OK");
         }
     }
 }

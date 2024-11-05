@@ -2,22 +2,46 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="AutomobileRegisty__kursovaya_.MainMenu"
-             Title="Главное меню">
-    <ScrollView
+             Title="Список зарегистрированных автомобилей">
+    <StackLayout
+        MinimumWidthRequest="600"
         BackgroundColor="LightGray">
-        <VerticalStackLayout
-            x:Name="InfoStack"
-            VerticalOptions="Center" 
-            HorizontalOptions="Center" >
 
-            <Label 
-                Text="Вы вошли в систему!"
-                x:Name="EnterLabel"
-                FontSize="24"
-                VerticalOptions="Center" 
-                HorizontalOptions="Center"
-                TextColor="DarkCyan" />
+        <!-- Фиксированные заголовки -->
+        <Grid Padding="10" BackgroundColor="DimGray">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <Label Text="Бренд" Grid.Column="0" FontAttributes="Bold" TextColor="AntiqueWhite"/>
+            <Label Text="Модель" Grid.Column="1" FontAttributes="Bold" TextColor="AntiqueWhite"/>
+            <Label Text="Год" Grid.Column="2" FontAttributes="Bold" TextColor="AntiqueWhite"/>
+            <Label Text="Vin" Grid.Column="3" FontAttributes="Bold" TextColor="AntiqueWhite"/>
+        </Grid>
 
-        </VerticalStackLayout>
-    </ScrollView>
+        <!-- Прокручиваемые данные -->
+        <ScrollView>
+            <CollectionView x:Name="VehiclesCollectionView"
+                            SelectionChanged="VehiclesCollectionView_SelectionChanged">
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <Grid Padding="10">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
+                            <Label Text="{Binding ManufacturerNavigation.Name}" Grid.Column="0" TextColor="DarkBlue"/>
+                            <Label Text="{Binding Model}" Grid.Column="1" TextColor="DarkBlue"/>
+                            <Label Text="{Binding Year}" Grid.Column="2" TextColor="DarkCyan"/>
+                            <Label Text="{Binding Vin}" Grid.Column="3" TextColor="DarkMagenta"/>
+                        </Grid>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+        </ScrollView>
+    </StackLayout>
 </ContentPage>
