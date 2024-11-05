@@ -6,11 +6,13 @@
     <ScrollView
         BackgroundColor="LightGray">
         <VerticalStackLayout
+            x:Name="InfoStack"
             VerticalOptions="Center" 
             HorizontalOptions="Center" >
 
             <Label 
                 Text="Вы вошли в систему!"
+                x:Name="EnterLabel"
                 FontSize="24"
                 VerticalOptions="Center" 
                 HorizontalOptions="Center"
