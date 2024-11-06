@@ -8,15 +8,18 @@ public partial class MainMenu : ContentPage
     public MainMenu()
     {
         InitializeComponent();
-        LoadVehiclesAsync();
+        LoadVehicles();
     }
 
-    private void LoadVehiclesAsync()
+    private void LoadVehicles()
     {
         using (var db = new ApplicationContext())
         {
             var carsList = db.VehiclesList
                 .Include(v => v.ManufacturerNavigation)
+                .Include(v => v.ColorNavigation)
+                .Include(v => v.TypeNavigation)
+                .Include(v => v.CreatedByNavigation)
                 .ToList();
 
             if (carsList.Count > 0)

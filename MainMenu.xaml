@@ -8,17 +8,41 @@
         BackgroundColor="LightGray">
 
         <!-- Фиксированные заголовки -->
-        <Grid Padding="10" BackgroundColor="DimGray">
+        <Grid Padding="10" 
+              BackgroundColor="DimGray"
+              ColumnSpacing="1">
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="*"/>
-                <ColumnDefinition Width="*"/>
-                <ColumnDefinition Width="*"/>
-                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="2*"/>
+                <ColumnDefinition Width="3*"/>
+                <ColumnDefinition Width="2*"/>
+                <ColumnDefinition Width="2*"/>
+                <ColumnDefinition Width="2*"/>
+                <ColumnDefinition Width="3*"/>
+                <ColumnDefinition Width="2*"/>
+                <ColumnDefinition Width="2*"/>
+                <ColumnDefinition Width="2*"/>
+                <ColumnDefinition Width="2*"/>
             </Grid.ColumnDefinitions>
-            <Label Text="Бренд" Grid.Column="0" FontAttributes="Bold" TextColor="AntiqueWhite"/>
-            <Label Text="Модель" Grid.Column="1" FontAttributes="Bold" TextColor="AntiqueWhite"/>
-            <Label Text="Год" Grid.Column="2" FontAttributes="Bold" TextColor="AntiqueWhite"/>
-            <Label Text="Vin" Grid.Column="3" FontAttributes="Bold" TextColor="AntiqueWhite"/>
+            <Label Text="Бренд" Grid.Column="0" FontAttributes="Bold" TextColor="AntiqueWhite" 
+                   Padding="5" BackgroundColor="Gray"/>
+            <Label Text="Модель" Grid.Column="1" FontAttributes="Bold" TextColor="AntiqueWhite"
+                   Padding="5" BackgroundColor="Gray"/>
+            <Label Text="Тип кузова" Grid.Column="2" FontAttributes="Bold" TextColor="AntiqueWhite"
+                   Padding="5" BackgroundColor="Gray"/>
+            <Label Text="Цвет" Grid.Column="3" FontAttributes="Bold" TextColor="AntiqueWhite"
+                   Padding="5" BackgroundColor="Gray"/>
+            <Label Text="Год" Grid.Column="4" FontAttributes="Bold" TextColor="AntiqueWhite"
+                   Padding="5" BackgroundColor="Gray"/>
+            <Label Text="VIN" Grid.Column="5" FontAttributes="Bold" TextColor="AntiqueWhite"
+                   Padding="5" BackgroundColor="Gray"/>
+            <Label Text="Мощность" Grid.Column="6" FontAttributes="Bold" TextColor="AntiqueWhite"
+                   Padding="5" BackgroundColor="Gray"/>
+            <Label Text="Объем" Grid.Column="7" FontAttributes="Bold" TextColor="AntiqueWhite"
+                   Padding="5" BackgroundColor="Gray"/>
+            <Label Text="Масса" Grid.Column="8" FontAttributes="Bold" TextColor="AntiqueWhite"
+                   Padding="5" BackgroundColor="Gray"/>
+            <Label Text="Гос. номер" Grid.Column="9" FontAttributes="Bold" TextColor="AntiqueWhite"
+                   Padding="5" BackgroundColor="Gray"/>
         </Grid>
 
         <!-- Прокручиваемые данные -->
@@ -27,17 +51,41 @@
                             SelectionChanged="VehiclesCollectionView_SelectionChanged">
                 <CollectionView.ItemTemplate>
                     <DataTemplate>
-                        <Grid Padding="10">
+                        <Grid Padding="10" 
+                              ColumnSpacing="1"
+                              BackgroundColor="LightGray">
                             <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="*"/>
-                                <ColumnDefinition Width="*"/>
-                                <ColumnDefinition Width="*"/>
-                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="2*"/>
+                                <ColumnDefinition Width="3*"/>
+                                <ColumnDefinition Width="2*"/>
+                                <ColumnDefinition Width="2*"/>
+                                <ColumnDefinition Width="2*"/>
+                                <ColumnDefinition Width="3*"/>
+                                <ColumnDefinition Width="2*"/>
+                                <ColumnDefinition Width="2*"/>
+                                <ColumnDefinition Width="2*"/>
+                                <ColumnDefinition Width="2*"/>
                             </Grid.ColumnDefinitions>
-                            <Label Text="{Binding ManufacturerNavigation.Name}" Grid.Column="0" TextColor="DarkBlue"/>
-                            <Label Text="{Binding Model}" Grid.Column="1" TextColor="DarkBlue"/>
-                            <Label Text="{Binding Year}" Grid.Column="2" TextColor="DarkCyan"/>
-                            <Label Text="{Binding Vin}" Grid.Column="3" TextColor="DarkMagenta"/>
+                            <Label Text="{Binding ManufacturerNavigation.Name}" Grid.Column="0" TextColor="DarkBlue"
+                                   Padding="5" BackgroundColor="White"/>
+                            <Label Text="{Binding Model}" Grid.Column="1" TextColor="DarkBlue"
+                                   Padding="5" BackgroundColor="White"/>
+                            <Label Text="{Binding TypeNavigation.Name}" Grid.Column="2" TextColor="DarkBlue"
+                                   Padding="5" BackgroundColor="White"/>
+                            <Label Text="{Binding ColorNavigation.ColorName}" Grid.Column="3" TextColor="DarkBlue"
+                                   Padding="5" BackgroundColor="White"/>
+                            <Label Text="{Binding Year}" Grid.Column="4" TextColor="DarkCyan"
+                                   Padding="5" BackgroundColor="White"/>
+                            <Label Text="{Binding Vin}" Grid.Column="5" TextColor="DarkMagenta"
+                                   Padding="5" BackgroundColor="White"/>
+                            <Label Text="{Binding EnginePower}" Grid.Column="6" TextColor="DarkBlue"
+                                   Padding="5" BackgroundColor="White"/>
+                            <Label Text="{Binding EngineVolume}" Grid.Column="7" TextColor="DarkBlue"
+                                   Padding="5" BackgroundColor="White"/>
+                            <Label Text="{Binding Mass}" Grid.Column="8" TextColor="DarkBlue"
+                                   Padding="5" BackgroundColor="White"/>
+                            <Label Text="{Binding StateNumber}" Grid.Column="9" TextColor="DarkBlue"
+                                   Padding="5" BackgroundColor="White"/>
                         </Grid>
                     </DataTemplate>
                 </CollectionView.ItemTemplate>

@@ -21,7 +21,7 @@ public partial class Vehicle
 
     public short EngineVolume { get; set; }
 
-    public short Power { get; set; }
+    public short EnginePower { get; set; }
 
     public short Mass { get; set; }
 

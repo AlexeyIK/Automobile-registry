@@ -112,9 +112,9 @@ public partial class ApplicationContext : DbContext
             entity.Property(e => e.Id)
                 .HasDefaultValueSql("nextval('vehicle_type_id_seq'::regclass)")
                 .HasColumnName("id");
-            entity.Property(e => e.Type)
+            entity.Property(e => e.Name)
                 .HasMaxLength(32)
-                .HasColumnName("type");
+                .HasColumnName("name");
         });
 
         modelBuilder.Entity<Vehicle>(entity =>
@@ -141,7 +141,7 @@ public partial class ApplicationContext : DbContext
                 .HasMaxLength(64)
                 .HasColumnName("model");
             entity.Property(e => e.OwnedBy).HasColumnName("owned_by");
-            entity.Property(e => e.Power).HasColumnName("power");
+            entity.Property(e => e.EnginePower).HasColumnName("power");
             entity.Property(e => e.Type).HasColumnName("type");
             entity.Property(e => e.Vin)
                 .HasMaxLength(17)
