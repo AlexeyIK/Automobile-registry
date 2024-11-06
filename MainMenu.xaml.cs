@@ -34,4 +34,9 @@ public partial class MainMenu : ContentPage
             DisplayAlert("Выбран", $"{selectedVehicle.Manufacturer} {selectedVehicle.Model}", "OK");
         }
     }
+
+    private async void OnAddBtnClick(object sender, EventArgs e)
+    {
+        await Navigation.PushAsync(new AddVehicle(), true);
+    }
 }

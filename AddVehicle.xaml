@@ -1,0 +1,148 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="AutomobileRegisty__kursovaya_.AddVehicle"
+             Title="Добавление записи о транспортном средстве">
+    
+    <ScrollView BackgroundColor="LightGray">
+        <VerticalStackLayout
+            Spacing="25"
+            Padding="30,20"
+            MaximumWidthRequest="600">
+
+            <Label
+                Text="Добавление транспортного средства"
+                SemanticProperties.HeadingLevel="Level1"
+                FontSize="24"
+                HorizontalOptions="Center"
+                TextColor="DarkCyan"/>
+
+            <Grid RowSpacing="15" ColumnSpacing="10">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="150"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
+
+                <!-- Производитель -->
+                <Label Text="Производитель:" Grid.Row="0" Grid.Column="0" TextColor="DarkCyan"/>
+                <Border Grid.Row="0" Grid.Column="1" 
+                        Stroke="DarkCyan" 
+                        StrokeThickness="1">
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="Auto"/>
+                        </Grid.ColumnDefinitions>
+                        <Picker x:Name="ManufacturerPicker" 
+                                Style="{StaticResource PickerStyle}"
+                                Title="Выберите производителя"/>
+                        <Label Grid.Column="1" 
+                               Text="▼" 
+                               TextColor="DarkCyan" 
+                               VerticalOptions="Center"
+                               Margin="0,0,10,0"/>
+                    </Grid>
+                </Border>
+
+                <!-- Модель -->
+                <Label Text="Модель:" Grid.Row="1" Grid.Column="0" TextColor="DarkCyan"/>
+                <Entry x:Name="ModelEntry" Grid.Row="1" Grid.Column="1" BackgroundColor="White"/>
+
+                <!-- Тип кузова -->
+                <Label Text="Тип кузова:" Grid.Row="2" Grid.Column="0" TextColor="DarkCyan"/>
+                <Border Grid.Row="2" Grid.Column="1" 
+                        Stroke="DarkCyan" 
+                        StrokeThickness="1">
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="Auto"/>
+                        </Grid.ColumnDefinitions>
+                        <Picker x:Name="TypePicker" 
+                                Style="{StaticResource PickerStyle}"
+                                Title="Выберите тип кузова"/>
+                        <Label Grid.Column="1" 
+                               Text="▼" 
+                               TextColor="DarkCyan" 
+                               VerticalOptions="Center"
+                               Margin="0,0,10,0"/>
+                    </Grid>
+                </Border>
+
+                <!-- Цвет -->
+                <Label Text="Цвет:" Grid.Row="3" Grid.Column="0" TextColor="DarkCyan"/>
+                <Picker x:Name="ColorPicker" Grid.Row="3" Grid.Column="1" BackgroundColor="White"/>
+
+                <!-- Год выпуска -->
+                <Label Text="Год выпуска:" Grid.Row="4" Grid.Column="0" TextColor="DarkCyan"/>
+                <Entry x:Name="YearEntry" Keyboard="Numeric" Grid.Row="4" Grid.Column="1" BackgroundColor="White"/>
+
+                <!-- VIN -->
+                <Label Text="VIN:" Grid.Row="5" Grid.Column="0" TextColor="DarkCyan"/>
+                <Entry x:Name="VinEntry" Grid.Row="5" Grid.Column="1" BackgroundColor="White"/>
+
+                <!-- Мощность двигателя -->
+                <Label Text="Мощность (л.с.):" Grid.Row="6" Grid.Column="0" TextColor="DarkCyan"/>
+                <Entry x:Name="PowerEntry" Keyboard="Numeric" Grid.Row="6" Grid.Column="1" BackgroundColor="White"/>
+
+                <!-- Объем двигателя -->
+                <Label Text="Объем (см³):" Grid.Row="7" Grid.Column="0" TextColor="DarkCyan"/>
+                <Entry x:Name="VolumeEntry" Keyboard="Numeric" Grid.Row="7" Grid.Column="1" BackgroundColor="White"/>
+
+                <!-- Масса -->
+                <Label Text="Масса (кг):" Grid.Row="8" Grid.Column="0" TextColor="DarkCyan"/>
+                <Entry x:Name="MassEntry" Keyboard="Numeric" Grid.Row="8" Grid.Column="1" BackgroundColor="White"/>
+
+                <!-- Гос. номер -->
+                <Label Text="Гос. номер:" Grid.Row="9" Grid.Column="0" TextColor="DarkCyan"/>
+                <Entry x:Name="StateNumberEntry" Grid.Row="9" Grid.Column="1" BackgroundColor="White"/>
+            </Grid>
+
+            <!-- Сообщение об ошибке -->
+            <Label
+                x:Name="AlertLabel"
+                Text=""
+                FontSize="14"
+                HorizontalTextAlignment="Center"
+                TextColor="Red"
+                IsVisible="False"/>
+
+            <!-- Кнопки -->
+            <HorizontalStackLayout
+                Spacing="20"
+                HorizontalOptions="Center">
+                
+                <Button
+                    x:Name="CreateBtn"
+                    Text="Создать"
+                    SemanticProperties.Hint="Create new vehicle"
+                    Clicked="OnCreateBtnClicked"
+                    BackgroundColor="DarkCyan"
+                    TextColor="AntiqueWhite"
+                    WidthRequest="120"/>
+
+                <Button
+                    x:Name="CancelBtn"
+                    Text="Отмена"
+                    SemanticProperties.Hint="Cancel creation"
+                    Clicked="OnCancelBtnClicked"
+                    BackgroundColor="White"
+                    TextColor="Black"
+                    WidthRequest="120"/>
+            </HorizontalStackLayout>
+
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentPage>

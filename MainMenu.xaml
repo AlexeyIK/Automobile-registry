@@ -91,5 +91,16 @@
                 </CollectionView.ItemTemplate>
             </CollectionView>
         </ScrollView>
+
+        <Button
+            x:Name="SubmitBtn"
+            Margin="24"
+            Text="+ Добавить"
+            SemanticProperties.Hint="Add new vehicle"
+            Clicked="OnAddBtnClick"
+            HorizontalOptions="End"
+            BackgroundColor="DarkCyan"
+            TextColor="GhostWhite"
+            VerticalOptions="EndAndExpand"/>
     </StackLayout>
 </ContentPage>

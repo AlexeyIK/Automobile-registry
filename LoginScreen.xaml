@@ -18,7 +18,7 @@
                 HorizontalOptions="Center" />-->
 
             <Label
-                Text="Учет автомобилей онлайн"
+                Text="Учет автомобилей и их характеристик"
                 SemanticProperties.HeadingLevel="Level1"
                 FontSize="32"
                 TextDecorations="Underline"
@@ -43,6 +43,7 @@
                 <Entry
                     x:Name="LoginEntry"
                     TextChanged="LoginPasswordTextChanged"
+                    Completed="OnEntryCompleted"
                     SemanticProperties.HeadingLevel="Level2"
                     MinimumWidthRequest="300"
                     FontSize="14"
@@ -58,6 +59,7 @@
                 <Entry
                     x:Name="PasswordEntry"
                     TextChanged="LoginPasswordTextChanged"
+                    Completed="OnEntryCompleted"
                     SemanticProperties.HeadingLevel="Level2"
                     MinimumWidthRequest="300"
                     FontSize="14"
@@ -83,8 +85,9 @@
                     Text="ВОЙТИ"
                     SemanticProperties.Hint="Submit login and password"
                     Clicked="OnSubmitBtnClicked"
-                    HorizontalOptions="Center"/>
-
+                    HorizontalOptions="Center"
+                    BackgroundColor="DarkCyan"
+                    TextColor="AntiqueWhite"/>
                 
             </VerticalStackLayout>
         </VerticalStackLayout>

@@ -41,5 +41,10 @@ public partial class LoginScreen : ContentPage
     void PasswordEntry_TextChanged(System.Object sender, Microsoft.Maui.Controls.TextChangedEventArgs e)
     {
     }
+
+    private void OnEntryCompleted(object sender, EventArgs e)
+    {
+        OnSubmitBtnClicked(sender, e);
+    }
 }
 
