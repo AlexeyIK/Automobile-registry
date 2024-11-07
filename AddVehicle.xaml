@@ -39,7 +39,9 @@
                 <Label Text="Производитель:" Grid.Row="0" Grid.Column="0" TextColor="DarkCyan"/>
                 <Border Grid.Row="0" Grid.Column="1" 
                         Stroke="DarkCyan" 
-                        StrokeThickness="1">
+                        StrokeThickness="1"
+                        BackgroundColor="White"
+                        >
                     <Grid>
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="*"/>
@@ -47,10 +49,11 @@
                         </Grid.ColumnDefinitions>
                         <Picker x:Name="ManufacturerPicker" 
                                 Style="{StaticResource PickerStyle}"
-                                Title="Выберите производителя"/>
+                                Title="Выберите производителя"
+                                SelectedIndexChanged="OnPickerSelectedIndexChanged"/>
                         <Label Grid.Column="1" 
                                Text="▼" 
-                               TextColor="DarkCyan" 
+                               TextColor="DarkCyan"
                                VerticalOptions="Center"
                                Margin="0,0,10,0"/>
                     </Grid>
@@ -58,7 +61,7 @@
 
                 <!-- Модель -->
                 <Label Text="Модель:" Grid.Row="1" Grid.Column="0" TextColor="DarkCyan"/>
-                <Entry x:Name="ModelEntry" Grid.Row="1" Grid.Column="1" BackgroundColor="White"/>
+                <Entry x:Name="ModelEntry" Grid.Row="1" Grid.Column="1" Style="{StaticResource EntryStyle}"/>
 
                 <!-- Тип кузова -->
                 <Label Text="Тип кузова:" Grid.Row="2" Grid.Column="0" TextColor="DarkCyan"/>
@@ -83,31 +86,31 @@
 
                 <!-- Цвет -->
                 <Label Text="Цвет:" Grid.Row="3" Grid.Column="0" TextColor="DarkCyan"/>
-                <Picker x:Name="ColorPicker" Grid.Row="3" Grid.Column="1" BackgroundColor="White"/>
+                <Picker x:Name="ColorPicker" Grid.Row="3" Grid.Column="1" Style="{StaticResource PickerStyle}" Title="Выберите цвет"/>
 
                 <!-- Год выпуска -->
                 <Label Text="Год выпуска:" Grid.Row="4" Grid.Column="0" TextColor="DarkCyan"/>
-                <Entry x:Name="YearEntry" Keyboard="Numeric" Grid.Row="4" Grid.Column="1" BackgroundColor="White"/>
+                <Entry x:Name="YearEntry" Style="{StaticResource EntryStyle}" Keyboard="Numeric" Grid.Row="4" Grid.Column="1"/>
 
                 <!-- VIN -->
                 <Label Text="VIN:" Grid.Row="5" Grid.Column="0" TextColor="DarkCyan"/>
-                <Entry x:Name="VinEntry" Grid.Row="5" Grid.Column="1" BackgroundColor="White"/>
+                <Entry x:Name="VinEntry" Style="{StaticResource EntryStyle}" Grid.Row="5" Grid.Column="1"/>
 
                 <!-- Мощность двигателя -->
                 <Label Text="Мощность (л.с.):" Grid.Row="6" Grid.Column="0" TextColor="DarkCyan"/>
-                <Entry x:Name="PowerEntry" Keyboard="Numeric" Grid.Row="6" Grid.Column="1" BackgroundColor="White"/>
+                <Entry x:Name="PowerEntry" Style="{StaticResource EntryStyle}" Keyboard="Numeric" Grid.Row="6" Grid.Column="1"/>
 
                 <!-- Объем двигателя -->
                 <Label Text="Объем (см³):" Grid.Row="7" Grid.Column="0" TextColor="DarkCyan"/>
-                <Entry x:Name="VolumeEntry" Keyboard="Numeric" Grid.Row="7" Grid.Column="1" BackgroundColor="White"/>
+                <Entry x:Name="VolumeEntry" Style="{StaticResource EntryStyle}" Keyboard="Numeric" Grid.Row="7" Grid.Column="1"/>
 
                 <!-- Масса -->
                 <Label Text="Масса (кг):" Grid.Row="8" Grid.Column="0" TextColor="DarkCyan"/>
-                <Entry x:Name="MassEntry" Keyboard="Numeric" Grid.Row="8" Grid.Column="1" BackgroundColor="White"/>
+                <Entry x:Name="MassEntry" Style="{StaticResource EntryStyle}" Keyboard="Numeric" Grid.Row="8" Grid.Column="1"/>
 
                 <!-- Гос. номер -->
                 <Label Text="Гос. номер:" Grid.Row="9" Grid.Column="0" TextColor="DarkCyan"/>
-                <Entry x:Name="StateNumberEntry" Grid.Row="9" Grid.Column="1" BackgroundColor="White"/>
+                <Entry x:Name="StateNumberEntry" Style="{StaticResource EntryStyle}" Grid.Row="9" Grid.Column="1"/>
             </Grid>
 
             <!-- Сообщение об ошибке -->
