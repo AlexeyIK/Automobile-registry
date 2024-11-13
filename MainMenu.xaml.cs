@@ -1,13 +1,29 @@
 ﻿using PostgreTest.Models;
 using Microsoft.EntityFrameworkCore;
+using System.Collections.ObjectModel;
 
 namespace AutomobileRegisty__kursovaya_;
 
 public partial class MainMenu : ContentPage
 {
+    private ObservableCollection<Vehicle> m_Vehicles;
+
     public MainMenu()
     {
         InitializeComponent();
+        m_Vehicles = new ObservableCollection<Vehicle>();
+        VehiclesCollectionView.ItemsSource = m_Vehicles;
+    }
+
+    protected override void OnNavigatedTo(NavigatedToEventArgs args)
+    {
+        LoadVehicles();
+        base.OnNavigatedTo(args);
+    }
+
+    protected override void OnAppearing()
+    {
+        base.OnAppearing();
         LoadVehicles();
     }
 
@@ -22,8 +38,11 @@ public partial class MainMenu : ContentPage
                 .Include(v => v.CreatedByNavigation)
                 .ToList();
 
-            if (carsList.Count > 0)
-                VehiclesCollectionView.ItemsSource = carsList;
+            m_Vehicles.Clear();
+            foreach (var car in carsList)
+            {
+                m_Vehicles.Add(car);
+            }
         }
     }
 

@@ -3,7 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="AutomobileRegisty__kursovaya_.AddVehicle"
              Title="Добавление записи о транспортном средстве">
-    
+
     <ScrollView BackgroundColor="LightGray">
         <VerticalStackLayout
             Spacing="25"
@@ -37,56 +37,54 @@
 
                 <!-- Производитель -->
                 <Label Text="Производитель:" Grid.Row="0" Grid.Column="0" TextColor="DarkCyan"/>
-                <Border Grid.Row="0" Grid.Column="1" 
-                        Stroke="DarkCyan" 
-                        StrokeThickness="1"
-                        BackgroundColor="White"
-                        >
-                    <Grid>
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="*"/>
-                            <ColumnDefinition Width="Auto"/>
-                        </Grid.ColumnDefinitions>
-                        <Picker x:Name="ManufacturerPicker" 
-                                Style="{StaticResource PickerStyle}"
-                                Title="Выберите производителя"
-                                SelectedIndexChanged="OnPickerSelectedIndexChanged"/>
-                        <Label Grid.Column="1" 
-                               Text="▼" 
-                               TextColor="DarkCyan"
-                               VerticalOptions="Center"
-                               Margin="0,0,10,0"/>
-                    </Grid>
-                </Border>
+                <Grid Grid.Row="0" Grid.Column="1">
+                    <Label Text="▼" 
+                           TextColor="DarkCyan"
+                           VerticalOptions="Center" 
+                           HorizontalOptions="End"
+                           ZIndex="1"
+                           Margin="0,0,10,0"
+                           InputTransparent="True"/>
+                    <Picker x:Name="ManufacturerPicker"
+                           Style="{StaticResource PickerStyle}"
+                           Title="Выберите производителя"
+                           SelectedIndexChanged="OnPickerSelectedIndexChanged"/>
+                </Grid>
 
                 <!-- Модель -->
-                <Label Text="Модель:" Grid.Row="1" Grid.Column="0" TextColor="DarkCyan"/>
+                <Label Text="Модель:" Grid.Row="1" Grid.Column="0" Style="{StaticResource EntryStyle}" TextColor="DarkCyan"/>
                 <Entry x:Name="ModelEntry" Grid.Row="1" Grid.Column="1" Style="{StaticResource EntryStyle}"/>
 
                 <!-- Тип кузова -->
                 <Label Text="Тип кузова:" Grid.Row="2" Grid.Column="0" TextColor="DarkCyan"/>
-                <Border Grid.Row="2" Grid.Column="1" 
-                        Stroke="DarkCyan" 
-                        StrokeThickness="1">
-                    <Grid>
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="*"/>
-                            <ColumnDefinition Width="Auto"/>
-                        </Grid.ColumnDefinitions>
-                        <Picker x:Name="TypePicker" 
-                                Style="{StaticResource PickerStyle}"
-                                Title="Выберите тип кузова"/>
-                        <Label Grid.Column="1" 
-                               Text="▼" 
-                               TextColor="DarkCyan" 
-                               VerticalOptions="Center"
-                               Margin="0,0,10,0"/>
-                    </Grid>
-                </Border>
+                <Grid Grid.Row="2" Grid.Column="1">
+                    <Label Text="▼" 
+                           TextColor="DarkCyan"
+                           VerticalOptions="Center" 
+                           HorizontalOptions="End"
+                           ZIndex="1"
+                           Margin="0,0,10,0"
+                           InputTransparent="True"/>
+                    <Picker x:Name="TypePicker"
+                           Style="{StaticResource PickerStyle}"
+                           Title="Выберите тип кузова"
+                           SelectedIndexChanged="OnPickerSelectedIndexChanged"/>
+                </Grid>
 
                 <!-- Цвет -->
                 <Label Text="Цвет:" Grid.Row="3" Grid.Column="0" TextColor="DarkCyan"/>
-                <Picker x:Name="ColorPicker" Grid.Row="3" Grid.Column="1" Style="{StaticResource PickerStyle}" Title="Выберите цвет"/>
+                <Grid Grid.Row="3" Grid.Column="1">
+                    <Label Text="▼" 
+                           TextColor="DarkCyan" 
+                           VerticalOptions="Center"
+                           HorizontalOptions="End"
+                           Margin="0,0,10,0"
+                           ZIndex="1"
+                           InputTransparent="True"/>
+                    <Picker x:Name="ColorPicker"
+                            Style="{StaticResource PickerStyle}"
+                            Title="Выберите цвет"/>
+                </Grid>
 
                 <!-- Год выпуска -->
                 <Label Text="Год выпуска:" Grid.Row="4" Grid.Column="0" TextColor="DarkCyan"/>
@@ -126,7 +124,7 @@
             <HorizontalStackLayout
                 Spacing="20"
                 HorizontalOptions="Center">
-                
+
                 <Button
                     x:Name="CreateBtn"
                     Text="Создать"
