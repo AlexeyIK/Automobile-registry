@@ -85,9 +85,8 @@
                     Text="ВОЙТИ"
                     SemanticProperties.Hint="Submit login and password"
                     Clicked="OnSubmitBtnClicked"
-                    HorizontalOptions="Center"
-                    BackgroundColor="DarkCyan"
-                    TextColor="AntiqueWhite"/>
+                    Style="{StaticResource ButtonStyle}"
+                    HorizontalOptions="Center"/>
                 
             </VerticalStackLayout>
         </VerticalStackLayout>

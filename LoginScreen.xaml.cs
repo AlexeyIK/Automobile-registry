@@ -1,12 +1,13 @@
-﻿namespace AutomobileRegisty__kursovaya_;
+﻿using Microsoft.EntityFrameworkCore;
+using PostgreTest.Models;
+
+namespace AutomobileRegisty__kursovaya_;
 
 public partial class LoginScreen : ContentPage
 {
     private const string EMPTY_FIELD_ALERT = "Необходимо заполнить поля \"Логин\" и \"Пароль\"!";
     private const string WRONG_LOGINPASSORD_ALERT = "Неверные логин/пароль";
-
-    private string mLogin = "admin";
-    private string mPassword = "1234";
+    private const string NO_USER_FOUND_ALERT = "Пользователь с таким логином не существует!";
 
     public LoginScreen()
     {
@@ -28,14 +29,25 @@ public partial class LoginScreen : ContentPage
             return;
         }
 
-        if (LoginEntry.Text != mLogin || PasswordEntry.Text != mPassword)
+        using (var db = new ApplicationContext())
         {
-            AlertLabel.IsVisible = true;
-            AlertLabel.Text = WRONG_LOGINPASSORD_ALERT;
-            return;
-        }
+            var user = db.Users.Include(v => v.RoleNavigation).FirstOrDefault(o => o.Login == LoginEntry.Text);
+            if (user == null)
+            {
+                AlertLabel.IsVisible = true;
+                AlertLabel.Text = NO_USER_FOUND_ALERT;
+                return;
+            }
 
-        await Navigation.PushAsync(new MainMenu(), true);
+            if (user.Password != PasswordEntry.Text.Trim())
+            {
+                AlertLabel.IsVisible = true;
+                AlertLabel.Text = WRONG_LOGINPASSORD_ALERT;
+                return;
+            }
+
+            await Navigation.PushAsync(new MainMenu(user), true);
+        }
     }
 
     void PasswordEntry_TextChanged(System.Object sender, Microsoft.Maui.Controls.TextChangedEventArgs e)

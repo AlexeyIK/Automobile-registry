@@ -130,8 +130,7 @@
                     Text="Создать"
                     SemanticProperties.Hint="Create new vehicle"
                     Clicked="OnCreateBtnClicked"
-                    BackgroundColor="DarkCyan"
-                    TextColor="AntiqueWhite"
+                    Style="{StaticResource ButtonStyle}"
                     WidthRequest="120"/>
 
                 <Button

@@ -1,24 +1,49 @@
 ﻿using PostgreTest.Models;
 using Microsoft.EntityFrameworkCore;
 using System.Collections.ObjectModel;
+using System.Windows.Input;
 
 namespace AutomobileRegisty__kursovaya_;
 
 public partial class MainMenu : ContentPage
 {
-    private ObservableCollection<Vehicle> m_Vehicles;
+    private User CurrentUser;
+    private ObservableCollection<Vehicle> m_Vehicles = new();
 
-    public MainMenu()
+    private bool m_IsRefreshing;
+
+    public ICommand RowTappedCommand { get; private set; }
+
+    public MainMenu(User currentUser)
     {
         InitializeComponent();
-        m_Vehicles = new ObservableCollection<Vehicle>();
-        VehiclesCollectionView.ItemsSource = m_Vehicles;
-    }
+        CurrentUser = currentUser;
 
-    protected override void OnNavigatedTo(NavigatedToEventArgs args)
-    {
-        LoadVehicles();
-        base.OnNavigatedTo(args);
+        // пробрасываем юзернейм и роль в шапку
+        UserName.Text = $"{CurrentUser.FamilyName} {CurrentUser.FirstName[..1]}. ({CurrentUser.RoleNavigation.Name})";
+
+        // Биндим коллекцию в CollectionView
+        VehiclesCollectionView.ItemsSource = m_Vehicles;
+
+        // Команда обновления списка
+        RefreshCollectionView.Command = new Command(() =>
+        {
+            LoadVehicles();
+            RefreshCollectionView.IsRefreshing = m_IsRefreshing;
+        });
+
+        // Команда тапа на элемент списка
+        RowTappedCommand = new Command<Vehicle>(async (vehicle) =>
+        {
+            if (vehicle != null)
+            {
+                await DisplayAlert("Выбран автомобиль", 
+                    $"Производитель: {vehicle.ManufacturerNavigation?.Name}\n" +
+                    $"Модель: {vehicle.Model}\n" +
+                    $"VIN: {vehicle.Vin}", 
+                    "OK");
+            }
+        });
     }
 
     protected override void OnAppearing()
@@ -29,6 +54,8 @@ public partial class MainMenu : ContentPage
 
     private void LoadVehicles()
     {
+        m_IsRefreshing = true;
+
         using (var db = new ApplicationContext())
         {
             var carsList = db.VehiclesList
@@ -43,6 +70,8 @@ public partial class MainMenu : ContentPage
             {
                 m_Vehicles.Add(car);
             }
+
+            m_IsRefreshing = false;
         }
     }
 

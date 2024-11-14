@@ -20,7 +20,6 @@ public partial class AddVehicle : ContentPage
 
 	private async void OnCreateBtnClicked(object sender, EventArgs e)
 	{
-		// ToDo: добавлять запись в БД
 		using (var db = new ApplicationContext())
 		{
 			var manufacturer = db.Manufacturers.FirstOrDefault(m => m.Name == ManufacturerPicker.SelectedItem.ToString());
