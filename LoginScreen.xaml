@@ -49,7 +49,7 @@
                     FontSize="14"
                     HorizontalOptions="Center"
                     BackgroundColor="WhiteSmoke"
-                    TextColor="Cyan"/>
+                    TextColor="DarkCyan"/>
 
                 <Label
                     Margin="0, 8, 0, 0"
@@ -65,7 +65,7 @@
                     FontSize="14"
                     HorizontalOptions="Center"
                     BackgroundColor="WhiteSmoke"
-                    TextColor="Cyan"
+                    TextColor="DarkCyan"
                     IsPassword="True" />
 
                 <Label
