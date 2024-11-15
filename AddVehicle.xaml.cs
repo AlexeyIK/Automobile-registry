@@ -1,4 +1,5 @@
 ﻿using PostgreTest.Models;
+using Microsoft.EntityFrameworkCore;
 
 namespace AutomobileRegisty__kursovaya_;
 
@@ -84,6 +85,7 @@ public partial class AddVehicle : ContentPage
 
 			var vehicle = new PostgreTest.Models.Vehicle
 			{
+				Id = m_IsEditMode ? m_VehicleToEdit.Id : 0,
 				Manufacturer = manufacturer.Id,
 				Model = ModelEntry.Text,
 				Type = type.Id,
@@ -99,8 +101,11 @@ public partial class AddVehicle : ContentPage
 			{
 				var vehicleInDB = db.VehiclesList.FirstOrDefault(v => v.Id == vehicle.Id);
 				if (vehicleInDB != null)
-					db.Update(vehicle);
-            }
+				{
+					db.Entry(vehicleInDB).State = EntityState.Detached;
+					db.VehiclesList.Update(vehicle);
+				}
+			}
 			else
 			{
 				db.VehiclesList.Add(vehicle);
