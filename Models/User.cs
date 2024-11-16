@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿#nullable enable
 
 namespace PostgreTest.Models;
 
@@ -26,4 +25,8 @@ public partial class User
     public virtual ICollection<Vehicle> VehiclesListCreatedByNavigations { get; set; } = new List<Vehicle>();
 
     public virtual ICollection<Vehicle> VehiclesListOwnedByNavigations { get; set; } = new List<Vehicle>();
+
+    public virtual ICollection<Vehicle> VehiclesCreated { get; set; } = new List<Vehicle>();
+    
+    public virtual ICollection<Vehicle> VehiclesEdited { get; set; } = new List<Vehicle>();
 }

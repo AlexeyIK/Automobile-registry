@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿#nullable enable
 
 namespace PostgreTest.Models;
 
@@ -27,15 +26,19 @@ public partial class Vehicle
 
     public int? OwnedBy { get; set; }
 
-    public int? CreatedBy { get; set; }
+    public int Creator { get; set; }
 
-    public DateTime CreatedDate { get; set; }
+    public int? Editor { get; set; }
 
-    public DateTime EditedDate { get; set; }
+    public DateTime CreatedAt { get; set; }
+
+    public DateTime? EditedAt { get; set; }
 
     public virtual AutomobileColor ColorNavigation { get; set; } = null!;
 
-    public virtual User? CreatedByNavigation { get; set; }
+    public virtual User CreatorNavigation { get; set; } = null!;
+
+    public virtual User? EditorNavigation { get; set; }
 
     public virtual Manufacturer ManufacturerNavigation { get; set; } = null!;
 

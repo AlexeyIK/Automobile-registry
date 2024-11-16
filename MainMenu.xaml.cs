@@ -70,7 +70,7 @@ public partial class MainMenu : ContentPage
                 .Include(v => v.ManufacturerNavigation)
                 .Include(v => v.ColorNavigation)
                 .Include(v => v.TypeNavigation)
-                .Include(v => v.CreatedByNavigation)
+                .Include(v => v.CreatorNavigation)
                 .ToList();
 
             m_Vehicles.Clear();
@@ -107,7 +107,7 @@ public partial class MainMenu : ContentPage
                     .Include(v => v.ManufacturerNavigation)
                     .Include(v => v.ColorNavigation)
                     .Include(v => v.TypeNavigation)
-                    .Include(v => v.CreatedByNavigation)
+                    .Include(v => v.CreatorNavigation)
                     .FirstOrDefaultAsync(v => v.Id == vehicle.Id);
 
                 if (updateVehicle != null)
