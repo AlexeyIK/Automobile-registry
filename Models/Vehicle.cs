@@ -1,6 +1,6 @@
 ﻿#nullable enable
 
-namespace PostgreTest.Models;
+namespace Postgres.Models;
 
 public partial class Vehicle
 {
@@ -36,13 +36,13 @@ public partial class Vehicle
 
     public virtual AutomobileColor ColorNavigation { get; set; } = null!;
 
+    public virtual User? OwnedByNavigation { get; set; } = null;
+
     public virtual User CreatorNavigation { get; set; } = null!;
 
     public virtual User? EditorNavigation { get; set; }
 
     public virtual Manufacturer ManufacturerNavigation { get; set; } = null!;
-
-    public virtual User? OwnedByNavigation { get; set; }
 
     public virtual VehicleType TypeNavigation { get; set; } = null!;
 }

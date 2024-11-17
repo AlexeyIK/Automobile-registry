@@ -1,5 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using PostgreTest.Models;
+using Postgres.Models;
 
 namespace AutomobileRegisty__kursovaya_;
 

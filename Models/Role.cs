@@ -1,4 +1,4 @@
-﻿namespace PostgreTest.Models;
+﻿namespace Postgres.Models;
 
 public class Role
 {

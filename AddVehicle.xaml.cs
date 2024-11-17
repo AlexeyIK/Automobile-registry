@@ -1,4 +1,4 @@
-﻿using PostgreTest.Models;
+﻿using Postgres.Models;
 using Microsoft.EntityFrameworkCore;
 
 namespace AutomobileRegisty__kursovaya_;
@@ -83,7 +83,7 @@ public partial class AddVehicle : ContentPage
 				return;
 			}
 
-			var vehicle = new PostgreTest.Models.Vehicle
+			var vehicle = new Vehicle
 			{
 				Id = m_IsEditMode ? m_VehicleToEdit.Id : 0,
 				Manufacturer = manufacturer.Id,
@@ -99,16 +99,26 @@ public partial class AddVehicle : ContentPage
 
 			if (m_IsEditMode)
 			{
-				var vehicleInDB = db.VehiclesList.FirstOrDefault(v => v.Id == vehicle.Id);
+				var vehicleInDB = db.VehiclesList.AsNoTracking().FirstOrDefault(v => v.Id == vehicle.Id);
 				if (vehicleInDB != null)
 				{
-					db.Entry(vehicleInDB).State = EntityState.Detached;
+                    vehicle.Creator = vehicleInDB.Creator;
+                    vehicle.CreatedAt = vehicleInDB.CreatedAt;
+                    vehicle.OwnedBy = vehicleInDB.OwnedBy;
+
+                    vehicle.Editor = m_CurrentUser.Id;
+                    vehicle.EditedAt = DateTime.Now;
+
+                    db.Entry(vehicleInDB).State = EntityState.Detached;
 					db.VehiclesList.Update(vehicle);
 				}
 			}
 			else
 			{
-				db.VehiclesList.Add(vehicle);
+                vehicle.CreatorNavigation = m_CurrentUser;
+                vehicle.CreatedAt = DateTime.Now;
+
+                db.VehiclesList.Add(vehicle);
 			}
 
 			await db.SaveChangesAsync();

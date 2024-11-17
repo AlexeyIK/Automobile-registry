@@ -1,4 +1,4 @@
-﻿using PostgreTest.Models;
+﻿using Postgres.Models;
 using Microsoft.EntityFrameworkCore;
 using System.Collections.ObjectModel;
 using System.Windows.Input;
@@ -35,22 +35,9 @@ public partial class MainMenu : ContentPage
         // Команда тапа на элемент списка
         RowTappedCommand = new Command<Vehicle>(async (vehicle) =>
         {
-            if (vehicle != null)
-            {
-                bool edit = await DisplayAlert(
-                    "Действие", 
-                    $"Выбран автомобиль:\n" +
-                    $"Производитель: {vehicle.ManufacturerNavigation?.Name}\n" +
-                    $"Модель: {vehicle.Model}\n" +
-                    $"VIN: {vehicle.Vin}", 
-                    "Редактировать",
-                    "Отмена");
-
-                if (edit)
-                {
-                    await OpenEditForm(vehicle);
-                }
-            }
+            bool edit = await DisplaySelectedAsync(vehicle);
+            if (edit)
+                await OpenEditForm(vehicle);
         });
     }
 
@@ -71,7 +58,7 @@ public partial class MainMenu : ContentPage
                 .Include(v => v.ColorNavigation)
                 .Include(v => v.TypeNavigation)
                 .Include(v => v.CreatorNavigation)
-                .ToList();
+                .ToList().OrderByDescending(v => v.Id);
 
             m_Vehicles.Clear();
             foreach (var car in carsList)
@@ -81,6 +68,28 @@ public partial class MainMenu : ContentPage
 
             m_IsRefreshing = false;
         }
+    }
+
+    private async Task<bool> DisplaySelectedAsync(Vehicle selectedVehicle)
+    {
+        if (selectedVehicle == null)
+            return false;
+
+        var owner = selectedVehicle.OwnedBy != null ? $"{selectedVehicle.OwnedByNavigation.FamilyName} {selectedVehicle.OwnedByNavigation.FirstName[..1]} ({selectedVehicle.OwnedBy})" : "-";
+        var creator = $"{selectedVehicle.CreatorNavigation.FamilyName} {selectedVehicle.CreatorNavigation.FirstName[..1]} ({selectedVehicle.CreatedAt.ToShortDateString()} {selectedVehicle.CreatedAt.ToShortTimeString()})";
+        var editor = selectedVehicle.Editor != null ? $"{selectedVehicle.EditorNavigation.FamilyName[..1]} {selectedVehicle.EditorNavigation.FirstName} ({selectedVehicle.EditedAt?.ToShortDateString()} {selectedVehicle.CreatedAt.ToShortTimeString()})" : "-";
+
+        return await DisplayAlert(
+                    "Выбран автомобиль",
+                    $"Производитель: {selectedVehicle.ManufacturerNavigation?.Name}\n" +
+                    $"Модель: {selectedVehicle.Model}\n" +
+                    $"Год выпуска: {selectedVehicle.Year}\n" +
+                    $"VIN: {selectedVehicle.Vin}\n" +
+                    $"Владелец: {owner}\n" +
+                    $"Создано: {creator}\n" +
+                    $"Изменено: {editor}",
+                    "Редактировать",
+                    "Отмена");
     }
 
     private void VehiclesCollectionView_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -112,30 +121,30 @@ public partial class MainMenu : ContentPage
 
                 if (updateVehicle != null)
                 {
-                    // Проверяем права на редактирование
-                    if (m_CurrentUser.Role == 1)
+                    // Проверяем права на редактирование (если мы админ, или менеджер и запись создавали мы, либо если мы владелец данного авто)
+                    if (m_CurrentUser.Role == 1 || m_CurrentUser.Role == 2 && updateVehicle.CreatorNavigation == m_CurrentUser || updateVehicle.OwnedByNavigation == m_CurrentUser)
                     {
                         await Navigation.PushAsync(new AddVehicle(m_CurrentUser, updateVehicle), true);
                     }
                     else
                     {
-                        await DisplayAlert("Ошибка", 
-                            "У вас нет прав на редактирование этой записи", 
+                        await DisplayAlert("Ошибка",
+                            "У вас нет прав на редактирование этой записи",
                             "OK");
                     }
                 }
                 else
                 {
-                    await DisplayAlert("Ошибка", 
-                        "Запись не найдена в базе данных", 
+                    await DisplayAlert("Ошибка",
+                        "Запись не найдена в базе данных",
                         "OK");
                 }
             }
         }
         catch (Exception ex)
         {
-            await DisplayAlert("Ошибка", 
-                $"Не удалось открыть форму редактирования: {ex.Message}", 
+            await DisplayAlert("Ошибка",
+                $"Не удалось открыть форму редактирования: {ex.Message}",
                 "OK");
         }
     }
