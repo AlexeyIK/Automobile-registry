@@ -24,6 +24,8 @@ public partial class Vehicle
 
     public short Mass { get; set; }
 
+    public string? Number { get; set; }
+
     public int? OwnedBy { get; set; }
 
     public int Creator { get; set; }

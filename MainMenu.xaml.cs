@@ -77,7 +77,7 @@ public partial class MainMenu : ContentPage
 
         var owner = selectedVehicle.OwnedBy != null ? $"{selectedVehicle.OwnedByNavigation.FamilyName} {selectedVehicle.OwnedByNavigation.FirstName[..1]} ({selectedVehicle.OwnedBy})" : "-";
         var creator = $"{selectedVehicle.CreatorNavigation.FamilyName} {selectedVehicle.CreatorNavigation.FirstName[..1]} ({selectedVehicle.CreatedAt.ToShortDateString()} {selectedVehicle.CreatedAt.ToShortTimeString()})";
-        var editor = selectedVehicle.Editor != null ? $"{selectedVehicle.EditorNavigation.FamilyName[..1]} {selectedVehicle.EditorNavigation.FirstName} ({selectedVehicle.EditedAt?.ToShortDateString()} {selectedVehicle.CreatedAt.ToShortTimeString()})" : "-";
+        var editor = selectedVehicle.Editor != null ? $"{selectedVehicle.EditorNavigation.FamilyName} {selectedVehicle.EditorNavigation.FirstName[..1]} ({selectedVehicle.EditedAt?.ToShortDateString()} {selectedVehicle.CreatedAt.ToShortTimeString()})" : "-";
 
         return await DisplayAlert(
                     "Выбран автомобиль",
@@ -85,19 +85,12 @@ public partial class MainMenu : ContentPage
                     $"Модель: {selectedVehicle.Model}\n" +
                     $"Год выпуска: {selectedVehicle.Year}\n" +
                     $"VIN: {selectedVehicle.Vin}\n" +
+                    $"Гос.номер: {selectedVehicle.Number ?? "-"}\n" +
                     $"Владелец: {owner}\n" +
                     $"Создано: {creator}\n" +
                     $"Изменено: {editor}",
                     "Редактировать",
                     "Отмена");
-    }
-
-    private void VehiclesCollectionView_SelectionChanged(object sender, SelectionChangedEventArgs e)
-    {
-        if (e.CurrentSelection.FirstOrDefault() is Vehicle selectedVehicle)
-        {
-            DisplayAlert("Выбран", $"{selectedVehicle.Manufacturer} {selectedVehicle.Model}", "OK");
-        }
     }
 
     private async void OnAddBtnClick(object sender, EventArgs e)

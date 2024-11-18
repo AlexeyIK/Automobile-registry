@@ -5,7 +5,7 @@
              x:Class="AutomobileRegisty__kursovaya_.MainMenu"
              Title="Список зарегистрированных автомобилей">
     <StackLayout
-        MinimumWidthRequest="600"
+        MinimumWidthRequest="500"
         BackgroundColor="WhiteSmoke">
 
         <!-- Шапка с ФИО юзера -->
@@ -28,11 +28,11 @@
                 <ColumnDefinition Width="3*"/>
                 <ColumnDefinition Width="2*"/>
                 <ColumnDefinition Width="2*"/>
-                <ColumnDefinition Width="2*"/>
+                <ColumnDefinition Width="1*"/>
                 <ColumnDefinition Width="3*"/>
                 <ColumnDefinition Width="2*"/>
-                <ColumnDefinition Width="2*"/>
-                <ColumnDefinition Width="2*"/>
+                <ColumnDefinition Width="1*"/>
+                <ColumnDefinition Width="1*"/>
                 <ColumnDefinition Width="2*"/>
             </Grid.ColumnDefinitions>
             <Label Text="Бренд" Grid.Column="0" FontAttributes="Bold" TextColor="AntiqueWhite" 
@@ -60,80 +60,80 @@
         <!-- Прокручиваемые данные -->
         <RefreshView x:Name="RefreshCollectionView"
                      IsRefreshing="{Binding IsRefreshing}"
-                     Command="{Binding RefreshCommand}">
-            <ScrollView>
-                <CollectionView x:Name="VehiclesCollectionView"
+                     Command="{Binding RefreshCommand}"
+                     VerticalOptions="FillAndExpand"
+                     HorizontalOptions="Fill">
+            <CollectionView x:Name="VehiclesCollectionView"
                               SelectionMode="Single"
-                              SelectionChanged="VehiclesCollectionView_SelectionChanged">
-                    <CollectionView.ItemTemplate>
-                        <DataTemplate>
-                            <Grid Padding="8" 
-                                  ColumnSpacing="1"
-                                  RowSpacing="2">
-                                <Grid.GestureRecognizers>
-                                    <TapGestureRecognizer 
+                              HorizontalOptions="Fill">
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <Grid Padding="8" 
+                                ColumnSpacing="1"
+                                RowSpacing="2">
+                            <Grid.GestureRecognizers>
+                                <TapGestureRecognizer 
                                         Command="{Binding Source={RelativeSource AncestorType={x:Type local:MainMenu}}, Path=RowTappedCommand}"
                                         CommandParameter="{Binding .}"/>
-                                </Grid.GestureRecognizers>
-                                
-                                <!-- Добавляем визуальные состояния -->
-                                <VisualStateManager.VisualStateGroups>
-                                    <VisualStateGroup Name="CommonStates">
-                                        <VisualState Name="Normal">
-                                            <VisualState.Setters>
-                                                <Setter Property="BackgroundColor" Value="Transparent" />
-                                            </VisualState.Setters>
-                                        </VisualState>
-                                        <VisualState Name="Selected">
-                                            <VisualState.Setters>
-                                                <Setter Property="BackgroundColor" Value="{StaticResource Cyan100Accent}" />
-                                            </VisualState.Setters>
-                                        </VisualState>
-                                        <VisualState Name="PointerOver">
-                                            <VisualState.Setters>
-                                                <Setter Property="BackgroundColor" Value="{StaticResource Cyan200Accent}" />
-                                            </VisualState.Setters>
-                                        </VisualState>
-                                    </VisualStateGroup>
-                                </VisualStateManager.VisualStateGroups>
+                            </Grid.GestureRecognizers>
 
-                                <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="2*"/>
-                                    <ColumnDefinition Width="3*"/>
-                                    <ColumnDefinition Width="2*"/>
-                                    <ColumnDefinition Width="2*"/>
-                                    <ColumnDefinition Width="2*"/>
-                                    <ColumnDefinition Width="3*"/>
-                                    <ColumnDefinition Width="2*"/>
-                                    <ColumnDefinition Width="2*"/>
-                                    <ColumnDefinition Width="2*"/>
-                                    <ColumnDefinition Width="2*"/>
-                                </Grid.ColumnDefinitions>
-                                <Label Text="{Binding ManufacturerNavigation.Name}" Grid.Column="0" TextColor="DarkBlue"
+                            <!-- Добавляем визуальные состояния -->
+                            <VisualStateManager.VisualStateGroups>
+                                <VisualStateGroup Name="CommonStates">
+                                    <VisualState Name="Normal">
+                                        <VisualState.Setters>
+                                            <Setter Property="BackgroundColor" Value="Transparent" />
+                                        </VisualState.Setters>
+                                    </VisualState>
+                                    <VisualState Name="Selected">
+                                        <VisualState.Setters>
+                                            <Setter Property="BackgroundColor" Value="{StaticResource Cyan100Accent}" />
+                                        </VisualState.Setters>
+                                    </VisualState>
+                                    <VisualState Name="PointerOver">
+                                        <VisualState.Setters>
+                                            <Setter Property="BackgroundColor" Value="{StaticResource Cyan200Accent}" />
+                                        </VisualState.Setters>
+                                    </VisualState>
+                                </VisualStateGroup>
+                            </VisualStateManager.VisualStateGroups>
+
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="2*"/>
+                                <ColumnDefinition Width="3*"/>
+                                <ColumnDefinition Width="2*"/>
+                                <ColumnDefinition Width="2*"/>
+                                <ColumnDefinition Width="1*"/>
+                                <ColumnDefinition Width="3*"/>
+                                <ColumnDefinition Width="2*"/>
+                                <ColumnDefinition Width="1*"/>
+                                <ColumnDefinition Width="1*"/>
+                                <ColumnDefinition Width="2*"/>
+                            </Grid.ColumnDefinitions>
+                            <Label Text="{Binding ManufacturerNavigation.Name}" Grid.Column="0" TextColor="DarkBlue"
                                        Padding="5" BackgroundColor="Transparent"/>
-                                <Label Text="{Binding Model}" Grid.Column="1" TextColor="DarkBlue"
+                            <Label Text="{Binding Model}" Grid.Column="1" TextColor="DarkBlue"
                                        Padding="5" BackgroundColor="Transparent"/>
-                                <Label Text="{Binding TypeNavigation.Name}" Grid.Column="2" TextColor="DarkBlue"
+                            <Label Text="{Binding TypeNavigation.Name}" Grid.Column="2" TextColor="DarkBlue"
                                        Padding="5" BackgroundColor="Transparent"/>
-                                <Label Text="{Binding ColorNavigation.ColorName}" Grid.Column="3" TextColor="DarkBlue"
+                            <Label Text="{Binding ColorNavigation.ColorName}" Grid.Column="3" TextColor="DarkBlue"
                                        Padding="5" BackgroundColor="Transparent"/>
-                                <Label Text="{Binding Year}" Grid.Column="4" TextColor="DarkCyan"
+                            <Label Text="{Binding Year}" Grid.Column="4" TextColor="DarkCyan"
                                        Padding="5" BackgroundColor="Transparent"/>
-                                <Label Text="{Binding Vin}" Grid.Column="5" TextColor="DarkMagenta"
+                            <Label Text="{Binding Vin}" Grid.Column="5" TextColor="DarkMagenta"
                                        Padding="5" BackgroundColor="Transparent"/>
-                                <Label Text="{Binding EnginePower}" Grid.Column="6" TextColor="DarkBlue"
+                            <Label Text="{Binding EnginePower}" Grid.Column="6" TextColor="DarkBlue"
                                        Padding="5" BackgroundColor="Transparent"/>
-                                <Label Text="{Binding EngineVolume}" Grid.Column="7" TextColor="DarkBlue"
+                            <Label Text="{Binding EngineVolume}" Grid.Column="7" TextColor="DarkBlue"
                                        Padding="5" BackgroundColor="Transparent"/>
-                                <Label Text="{Binding Mass}" Grid.Column="8" TextColor="DarkBlue"
+                            <Label Text="{Binding Mass}" Grid.Column="8" TextColor="DarkBlue"
                                        Padding="5" BackgroundColor="Transparent"/>
-                                <Label Text="{Binding StateNumber}" Grid.Column="9" TextColor="DarkBlue"
+                            <Label Text="{Binding Number}" Grid.Column="9" TextColor="DarkBlue"
                                        Padding="5" BackgroundColor="Transparent"/>
-                            </Grid>
-                        </DataTemplate>
-                    </CollectionView.ItemTemplate>
-                </CollectionView>
-            </ScrollView>
+                        </Grid>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
         </RefreshView>
 
         <Button

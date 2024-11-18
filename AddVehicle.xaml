@@ -67,7 +67,7 @@
 
                     <!-- Модель -->
                     <Label Text="Модель:" Grid.Row="1" Grid.Column="0" Style="{StaticResource EntryStyle}" TextColor="DarkCyan"/>
-                    <Entry x:Name="ModelEntry" Grid.Row="1" Grid.Column="1" Style="{StaticResource EntryStyle}"/>
+                    <Entry x:Name="ModelEntry" Grid.Row="1" Grid.Column="1" Style="{StaticResource EntryStyle}" MaxLength="64"/>
 
                     <!-- Тип кузова -->
                     <Label Text="Тип кузова:" Grid.Row="2" Grid.Column="0" TextColor="DarkCyan"/>
@@ -106,7 +106,7 @@
 
                     <!-- VIN -->
                     <Label Text="VIN:" Grid.Row="5" Grid.Column="0" TextColor="DarkCyan"/>
-                    <Entry x:Name="VinEntry" Style="{StaticResource EntryStyle}" Grid.Row="5" Grid.Column="1"/>
+                    <Entry x:Name="VinEntry" Style="{StaticResource EntryStyle}" Grid.Row="5" Grid.Column="1" MaxLength="17"/>
 
                     <!-- Мощность двигателя -->
                     <Label Text="Мощность (л.с.):" Grid.Row="6" Grid.Column="0" TextColor="DarkCyan"/>
@@ -122,7 +122,7 @@
 
                     <!-- Гос. номер -->
                     <Label Text="Гос. номер:" Grid.Row="9" Grid.Column="0" TextColor="DarkCyan"/>
-                    <Entry x:Name="StateNumberEntry" Style="{StaticResource EntryStyle}" Grid.Row="9" Grid.Column="1"/>
+                    <Entry x:Name="NumberEntry" Style="{StaticResource EntryStyle}" Grid.Row="9" Grid.Column="1" MaxLength="9"/>
                 </Grid>
             </ScrollView>
 

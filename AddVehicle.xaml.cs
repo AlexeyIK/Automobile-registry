@@ -21,17 +21,16 @@ public partial class AddVehicle : ContentPage
         // пробрасываем юзернейм и роль в шапку
         UserName.Text = $"{m_CurrentUser.FamilyName} {m_CurrentUser.FirstName[..1]}. ({m_CurrentUser.RoleNavigation.Name})";
 
-        LoadPickerData();
-		if (m_IsEditMode)
-		{
-			CreateBtn.IsVisible = false;
-			UpdateBtn.IsVisible = true;
+        LoadPickersData();
 
+        CreateBtn.IsVisible = !m_IsEditMode;
+        UpdateBtn.IsVisible = m_IsEditMode;
+
+        if (m_IsEditMode)
             LoadVehicleData();
-		}
 	}
 
-	private void LoadPickerData()
+	private void LoadPickersData()
 	{
 		using (var db = new ApplicationContext())
 		{
@@ -52,8 +51,8 @@ public partial class AddVehicle : ContentPage
 		PowerEntry.Text = m_VehicleToEdit.EnginePower.ToString();
 		VolumeEntry.Text = m_VehicleToEdit.EngineVolume.ToString();
 		MassEntry.Text = m_VehicleToEdit.Mass.ToString();
-		//StateNumberEntry.Text = m_VehicleToEdit.StateNumber;
-	}
+		NumberEntry.Text = m_VehicleToEdit.Number?.ToUpper();
+    }
 
     private async void OnSaveBtnClicked(object sender, EventArgs e)
 	{
@@ -94,7 +93,8 @@ public partial class AddVehicle : ContentPage
 				Vin = VinEntry.Text,
 				EnginePower = power,
 				EngineVolume = volume,
-				Mass = mass
+				Mass = mass,
+				Number = NumberEntry.Text
 			};
 
 			if (m_IsEditMode)

@@ -150,6 +150,9 @@ public partial class ApplicationContext : DbContext
                 .HasMaxLength(17)
                 .HasColumnName("vin");
             entity.Property(e => e.Year).HasColumnName("year");
+            entity.Property(e => e.Number)
+                .HasMaxLength(9)
+                .HasColumnName("number");
 
             entity.Property(e => e.OwnedBy).HasColumnName("owned_by");
             entity.Property(e => e.Creator).HasColumnName("created_by");
