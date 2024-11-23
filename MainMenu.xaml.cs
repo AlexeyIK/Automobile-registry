@@ -7,20 +7,18 @@ namespace AutomobileRegisty__kursovaya_;
 
 public partial class MainMenu : ContentPage
 {
-    private User m_CurrentUser;
     private ObservableCollection<Vehicle> m_Vehicles = new();
 
     private bool m_IsRefreshing;
 
     public ICommand RowTappedCommand { get; private set; }
 
-    public MainMenu(User currentUser)
+    public MainMenu()
     {
         InitializeComponent();
-        m_CurrentUser = currentUser;
 
         // пробрасываем юзернейм и роль в шапку
-        UserName.Text = $"{m_CurrentUser.FamilyName} {m_CurrentUser.FirstName[..1]}. ({m_CurrentUser.RoleNavigation.Name})";
+        UserName.Text = $"{App.CurrentUser.FamilyName} {App.CurrentUser.FirstName[..1]}. ({App.CurrentUser.RoleNavigation.Name})";
 
         // Биндим коллекцию в CollectionView
         VehiclesCollectionView.ItemsSource = m_Vehicles;
@@ -95,7 +93,7 @@ public partial class MainMenu : ContentPage
 
     private async void OnAddBtnClick(object sender, EventArgs e)
     {
-        await Navigation.PushAsync(new AddVehicle(m_CurrentUser), true);
+        await Navigation.PushAsync(new AddVehicle(App.CurrentUser), true);
     }
 
     private async Task OpenEditForm(Vehicle vehicle)
@@ -115,9 +113,9 @@ public partial class MainMenu : ContentPage
                 if (updateVehicle != null)
                 {
                     // Проверяем права на редактирование (если мы админ, или менеджер и запись создавали мы, либо если мы владелец данного авто)
-                    if (m_CurrentUser.Role == 1 || m_CurrentUser.Role == 2 && updateVehicle.CreatorNavigation == m_CurrentUser || updateVehicle.OwnedByNavigation == m_CurrentUser)
+                    if (App.CurrentUser.Role == 1 || App.CurrentUser.Role == 2 || App.CurrentUser.Role == 3 && updateVehicle.OwnedByNavigation == App.CurrentUser)
                     {
-                        await Navigation.PushAsync(new AddVehicle(m_CurrentUser, updateVehicle), true);
+                        await Navigation.PushAsync(new AddVehicle(App.CurrentUser, updateVehicle), true);
                     }
                     else
                     {

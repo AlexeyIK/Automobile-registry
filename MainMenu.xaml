@@ -4,6 +4,9 @@
              xmlns:local="clr-namespace:AutomobileRegisty__kursovaya_"
              x:Class="AutomobileRegisty__kursovaya_.MainMenu"
              Title="Список зарегистрированных автомобилей">
+    <ContentPage.Resources>
+        <local:CreatorColorConverter x:Key="creatorColorConverter" />
+    </ContentPage.Resources>
     <StackLayout
         MinimumWidthRequest="500"
         BackgroundColor="WhiteSmoke">
@@ -69,8 +72,8 @@
                 <CollectionView.ItemTemplate>
                     <DataTemplate>
                         <Grid Padding="8" 
-                                ColumnSpacing="1"
-                                RowSpacing="2">
+                              ColumnSpacing="1"
+                              RowSpacing="2">
                             <Grid.GestureRecognizers>
                                 <TapGestureRecognizer 
                                         Command="{Binding Source={RelativeSource AncestorType={x:Type local:MainMenu}}, Path=RowTappedCommand}"
@@ -111,25 +114,25 @@
                                 <ColumnDefinition Width="2*"/>
                             </Grid.ColumnDefinitions>
                             <Label Text="{Binding ManufacturerNavigation.Name}" Grid.Column="0" TextColor="DarkBlue"
-                                       Padding="5" BackgroundColor="Transparent"/>
+                                       Padding="5" BackgroundColor="{Binding Creator, Converter={StaticResource creatorColorConverter}, ConverterParameter={x:Static local:App.CurrentUser}}"/>
                             <Label Text="{Binding Model}" Grid.Column="1" TextColor="DarkBlue"
-                                       Padding="5" BackgroundColor="Transparent"/>
+                                       Padding="5" BackgroundColor="{Binding Creator, Converter={StaticResource creatorColorConverter}, ConverterParameter={x:Static local:App.CurrentUser}}"/>
                             <Label Text="{Binding TypeNavigation.Name}" Grid.Column="2" TextColor="DarkBlue"
-                                       Padding="5" BackgroundColor="Transparent"/>
+                                       Padding="5" BackgroundColor="{Binding Creator, Converter={StaticResource creatorColorConverter}, ConverterParameter={x:Static local:App.CurrentUser}}"/>
                             <Label Text="{Binding ColorNavigation.ColorName}" Grid.Column="3" TextColor="DarkBlue"
-                                       Padding="5" BackgroundColor="Transparent"/>
+                                       Padding="5" BackgroundColor="{Binding Creator, Converter={StaticResource creatorColorConverter}, ConverterParameter={x:Static local:App.CurrentUser}}"/>
                             <Label Text="{Binding Year}" Grid.Column="4" TextColor="DarkCyan"
-                                       Padding="5" BackgroundColor="Transparent"/>
+                                       Padding="5" BackgroundColor="{Binding Creator, Converter={StaticResource creatorColorConverter}, ConverterParameter={x:Static local:App.CurrentUser}}"/>
                             <Label Text="{Binding Vin}" Grid.Column="5" TextColor="DarkMagenta"
-                                       Padding="5" BackgroundColor="Transparent"/>
+                                       Padding="5" BackgroundColor="{Binding Creator, Converter={StaticResource creatorColorConverter}, ConverterParameter={x:Static local:App.CurrentUser}}"/>
                             <Label Text="{Binding EnginePower}" Grid.Column="6" TextColor="DarkBlue"
-                                       Padding="5" BackgroundColor="Transparent"/>
+                                       Padding="5" BackgroundColor="{Binding Creator, Converter={StaticResource creatorColorConverter}, ConverterParameter={x:Static local:App.CurrentUser}}"/>
                             <Label Text="{Binding EngineVolume}" Grid.Column="7" TextColor="DarkBlue"
-                                       Padding="5" BackgroundColor="Transparent"/>
+                                       Padding="5" BackgroundColor="{Binding Creator, Converter={StaticResource creatorColorConverter}, ConverterParameter={x:Static local:App.CurrentUser}}"/>
                             <Label Text="{Binding Mass}" Grid.Column="8" TextColor="DarkBlue"
-                                       Padding="5" BackgroundColor="Transparent"/>
+                                       Padding="5" BackgroundColor="{Binding Creator, Converter={StaticResource creatorColorConverter}, ConverterParameter={x:Static local:App.CurrentUser}}"/>
                             <Label Text="{Binding Number}" Grid.Column="9" TextColor="DarkBlue"
-                                       Padding="5" BackgroundColor="Transparent"/>
+                                       Padding="5" BackgroundColor="{Binding Creator, Converter={StaticResource creatorColorConverter}, ConverterParameter={x:Static local:App.CurrentUser}}"/>
                         </Grid>
                     </DataTemplate>
                 </CollectionView.ItemTemplate>

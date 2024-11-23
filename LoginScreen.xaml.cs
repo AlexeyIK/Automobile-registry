@@ -46,7 +46,8 @@ public partial class LoginScreen : ContentPage
                 return;
             }
 
-            await Navigation.PushAsync(new MainMenu(user), true);
+            App.CurrentUser = user;
+            await Navigation.PushAsync(new MainMenu(), true);
         }
     }
 
