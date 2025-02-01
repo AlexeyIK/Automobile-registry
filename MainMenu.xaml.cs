@@ -26,7 +26,7 @@ public partial class MainMenu : ContentPage
         // Команда обновления списка
         RefreshCollectionView.Command = new Command(() =>
         {
-            LoadVehicles();
+            LoadVehicles(); 
             RefreshCollectionView.IsRefreshing = m_IsRefreshing;
         });
 

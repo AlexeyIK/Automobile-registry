@@ -11,7 +11,7 @@ public class CreatorColorConverter : IValueConverter
         {
             if (parameter is User currentUser)
             {
-                return creatorId == currentUser.Id ? Colors.LightGreen : Colors.Transparent;
+                return creatorId == currentUser.Id ? Color.FromRgba(0.9, 0.9, 1, 0.7) : Colors.Transparent;
             }
         }
 
