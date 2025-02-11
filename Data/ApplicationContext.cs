@@ -1,6 +1,5 @@
 ﻿using System.Diagnostics;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.Configuration;
 using Postgres.Models;
 
 namespace AutomobileRegisty__kursovaya_;
@@ -44,49 +43,38 @@ public partial class ApplicationContext : DbContext
         modelBuilder.Entity<AutomobileColor>(entity =>
         {
             entity.HasKey(e => e.Id).HasName("color_pkey");
-
             entity.ToTable("colors");
-
             entity.Property(e => e.Id)
                 .HasDefaultValueSql("nextval('color_id_seq'::regclass)")
                 .HasColumnName("id");
             entity.Property(e => e.ColorName)
-                .HasMaxLength(32)
                 .HasColumnName("color_name");
         });
 
         modelBuilder.Entity<Manufacturer>(entity =>
         {
             entity.HasKey(e => e.Id).HasName("manufacturer_pkey");
-
             entity.ToTable("manufacturers");
-
             entity.Property(e => e.Id)
                 .HasDefaultValueSql("nextval('manufacturer_id_seq'::regclass)")
                 .HasColumnName("id");
             entity.Property(e => e.Name)
-                .HasMaxLength(64)
                 .HasColumnName("name");
         });
 
         modelBuilder.Entity<Role>(entity =>
         {
             entity.HasKey(e => e.Id).HasName("roles_pkey");
-
             entity.ToTable("roles");
-
             entity.Property(e => e.Id).HasColumnName("id");
             entity.Property(e => e.Name)
-                .HasMaxLength(32)
                 .HasColumnName("name");
         });
 
         modelBuilder.Entity<User>(entity =>
         {
             entity.HasKey(e => e.Id).HasName("users_pkey");
-
             entity.ToTable("users");
-
             entity.Property(e => e.Id).HasColumnName("id");
             entity.Property(e => e.FamilyName)
                 .HasMaxLength(255)
@@ -107,7 +95,6 @@ public partial class ApplicationContext : DbContext
             entity.Property(e => e.PassportNumber)
                 .HasMaxLength(10)
                 .HasColumnName("passport_number");
-
             entity.HasOne(d => d.RoleNavigation).WithMany(p => p.Users)
                 .HasForeignKey(d => d.Role)
                 .OnDelete(DeleteBehavior.ClientSetNull)
@@ -117,9 +104,7 @@ public partial class ApplicationContext : DbContext
         modelBuilder.Entity<VehicleType>(entity =>
         {
             entity.HasKey(e => e.Id).HasName("vehicle_type_pkey");
-
             entity.ToTable("vehicle_types");
-
             entity.Property(e => e.Id)
                 .HasDefaultValueSql("nextval('vehicle_type_id_seq'::regclass)")
                 .HasColumnName("id");
@@ -131,9 +116,7 @@ public partial class ApplicationContext : DbContext
         modelBuilder.Entity<Vehicle>(entity =>
         {
             entity.HasKey(e => e.Id).HasName("vehicles_list_pkey");
-
             entity.ToTable("vehicles_list");
-
             entity.Property(e => e.Id)
                 .HasDefaultValueSql("nextval('vehicles_list_id_seq'::regclass)")
                 .HasColumnName("id");
