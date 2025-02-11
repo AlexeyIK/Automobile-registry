@@ -25,6 +25,7 @@ public partial class VehicleForm : ContentPage
 
         CreateBtn.IsVisible = !m_IsEditMode;
         UpdateBtn.IsVisible = m_IsEditMode;
+        DeleteBtn.IsVisible = m_IsEditMode;
 
         if (m_IsEditMode)
             LoadVehicleData();
@@ -123,6 +124,27 @@ public partial class VehicleForm : ContentPage
 
             await db.SaveChangesAsync();
             await Navigation.PopAsync();
+        }
+    }
+
+    private async void OnDeleteBtnClicked(object sender, EventArgs e)
+    {
+        using (var db = new ApplicationContext())
+        {
+            if (m_VehicleToEdit != null)
+            {
+                var deleteConfirm = await DisplayAlert("Удаление", "Вы уверены, что хотите безвозвратно удалить запись?", "Да", "Отмена");
+                if (deleteConfirm)
+                {
+                    db.VehiclesList.Remove(m_VehicleToEdit);
+                    await db.SaveChangesAsync();
+                    await Navigation.PopAsync();
+                }
+            }
+            else
+            {
+                await DisplayAlert("Ошибка", "Запись не найдена", "OK");
+            }
         }
     }
 

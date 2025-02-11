@@ -152,7 +152,7 @@
                     SemanticProperties.Hint="Update changes"
                     Clicked="OnSaveBtnClicked"
                     Style="{StaticResource ButtonStyle}"
-                    WidthRequest="120"/>
+                    WidthRequest="150"/>
 
                 <Button
                     x:Name="CancelBtn"
@@ -161,7 +161,18 @@
                     Clicked="OnCancelBtnClicked"
                     BackgroundColor="White"
                     TextColor="Black"
-                    WidthRequest="120"/>
+                    WidthRequest="130"/>
+
+                <Button
+                    x:Name="DeleteBtn"
+                    Text="Удалить"
+                    SemanticProperties.Hint="Delete vehicle record"
+                    Clicked="OnDeleteBtnClicked"
+                    BackgroundColor="Red"
+                    TextColor="White"
+                    WidthRequest="100"
+                    TranslationX="60"/>
+
             </HorizontalStackLayout>
         </VerticalStackLayout>
     </StackLayout>
