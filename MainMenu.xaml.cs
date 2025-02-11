@@ -93,7 +93,7 @@ public partial class MainMenu : ContentPage
 
     private async void OnAddBtnClick(object sender, EventArgs e)
     {
-        await Navigation.PushAsync(new AddVehicle(App.CurrentUser), true);
+        await Navigation.PushAsync(new VehicleForm(App.CurrentUser), true);
     }
 
     private async Task OpenEditForm(Vehicle vehicle)
@@ -112,10 +112,11 @@ public partial class MainMenu : ContentPage
 
                 if (updateVehicle != null)
                 {
-                    // Проверяем права на редактирование (если мы админ, или менеджер и запись создавали мы, либо если мы владелец данного авто)
+                    // Проверяем права на редактирование (если мы админ, или менеджер
+                    // и запись создавали мы, либо если мы владелец данного авто)
                     if (App.CurrentUser.Role == 1 || App.CurrentUser.Role == 2 || App.CurrentUser.Role == 3 && updateVehicle.OwnedByNavigation == App.CurrentUser)
                     {
-                        await Navigation.PushAsync(new AddVehicle(App.CurrentUser, updateVehicle), true);
+                        await Navigation.PushAsync(new VehicleForm(App.CurrentUser, updateVehicle), true);
                     }
                     else
                     {

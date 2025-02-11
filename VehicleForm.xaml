@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="AutomobileRegisty__kursovaya_.AddVehicle"
+             x:Class="AutomobileRegisty__kursovaya_.VehicleForm"
              Title="Добавление записи о транспортном средстве">
 
     <StackLayout
@@ -61,8 +61,7 @@
                            InputTransparent="True"/>
                         <Picker x:Name="ManufacturerPicker"
                            Style="{StaticResource PickerStyle}"
-                           Title="Выберите производителя"
-                           SelectedIndexChanged="OnPickerSelectedIndexChanged"/>
+                           Title="Выберите производителя"/>
                     </Grid>
 
                     <!-- Модель -->
@@ -81,8 +80,7 @@
                            InputTransparent="True"/>
                         <Picker x:Name="TypePicker"
                            Style="{StaticResource PickerStyle}"
-                           Title="Выберите тип кузова"
-                           SelectedIndexChanged="OnPickerSelectedIndexChanged"/>
+                           Title="Выберите тип кузова" />
                     </Grid>
 
                     <!-- Цвет -->

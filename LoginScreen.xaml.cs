@@ -1,5 +1,4 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using Postgres.Models;
 
 namespace AutomobileRegisty__kursovaya_;
 
@@ -49,11 +48,7 @@ public partial class LoginScreen : ContentPage
             App.CurrentUser = user;
             await Navigation.PushAsync(new MainMenu(), true);
         }
-    }
-
-    void PasswordEntry_TextChanged(System.Object sender, Microsoft.Maui.Controls.TextChangedEventArgs e)
-    {
-    }
+    } 
 
     private void OnEntryCompleted(object sender, EventArgs e)
     {
