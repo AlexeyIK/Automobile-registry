@@ -1,0 +1,88 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="AutomobileRegisty__kursovaya_.LoginScreen"
+             Title="Вход">
+
+    <ScrollView
+        BackgroundColor="LightGray">
+        <VerticalStackLayout
+            Spacing="25"
+            Padding="30,0"
+            VerticalOptions="Center">
+
+            <Label
+                Text="Учет автомобилей и их характеристик"
+                SemanticProperties.HeadingLevel="Level1"
+                FontSize="32"
+                TextDecorations="Underline"
+                HorizontalOptions="Center"
+                TextColor="DarkCyan"/>
+
+            <Label
+                Text="Вход"
+                SemanticProperties.HeadingLevel="Level2"
+                SemanticProperties.Description="Welcome to automobile registry system"
+                FontSize="24"
+                HorizontalOptions="Center"
+                TextColor="DarkCyan"/>
+
+            <VerticalStackLayout
+                MaximumWidthRequest="300"
+                Spacing="4">
+                <Label
+                    Text="Логин:"
+                    HorizontalOptions="Start"
+                    TextColor="DarkCyan"/>
+                <Entry
+                    x:Name="LoginEntry"
+                    TextChanged="LoginPasswordTextChanged"
+                    Completed="OnEntryCompleted"
+                    SemanticProperties.HeadingLevel="Level2"
+                    MinimumWidthRequest="300"
+                    FontSize="14"
+                    HorizontalOptions="Center"
+                    BackgroundColor="WhiteSmoke"
+                    TextColor="DarkCyan"/>
+
+                <Label
+                    Margin="0, 8, 0, 0"
+                    Text="Пароль:"
+                    HorizontalOptions="Start"
+                    TextColor="DarkCyan"/>
+                <Entry
+                    x:Name="PasswordEntry"
+                    TextChanged="LoginPasswordTextChanged"
+                    Completed="OnEntryCompleted"
+                    SemanticProperties.HeadingLevel="Level2"
+                    MinimumWidthRequest="300"
+                    FontSize="14"
+                    HorizontalOptions="Center"
+                    BackgroundColor="WhiteSmoke"
+                    TextColor="DarkCyan"
+                    IsPassword="True" />
+
+                <Label
+                    x:Name="AlertLabel"
+                    Text=""
+                    FontSize="14"
+                    MinimumWidthRequest="300"
+                    HeightRequest="20"
+                    HorizontalTextAlignment="Start"
+                    TextColor="Red"
+                    IsVisible="False"
+                    />
+
+                <Button
+                    x:Name="SubmitBtn"
+                    Margin="0, 16, 0, 0"
+                    Text="ВОЙТИ"
+                    SemanticProperties.Hint="Submit login and password"
+                    Clicked="OnSubmitBtnClicked"
+                    Style="{StaticResource ButtonStyle}"
+                    HorizontalOptions="Center"/>
+                
+            </VerticalStackLayout>
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentPage>

@@ -1,11 +1,14 @@
-﻿namespace AutomobileRegisty__kursovaya_;
+﻿using Postgres.Models;
+
+namespace AutomobileRegisty__kursovaya_;
 
 public partial class App : Application
 {
-	public App()
+    public static User CurrentUser { get; set; }
+
+    public App()
 	{
 		InitializeComponent();
-
 		MainPage = new AppShell();
 	}
 }
